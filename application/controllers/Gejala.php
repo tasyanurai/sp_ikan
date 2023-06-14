@@ -6,32 +6,18 @@ class Gejala extends CI_Controller
 	function __construct(){
 		parent::__construct();
 		$this->load->model('M_gejala');
-		$this->load->library('session');
 		// if($this->session->userdata('status') != "login"){
 		// redirect(base_url("login"));
 		// }
 		}
-	  
-// menamilkan list gejala 
+
+// menampilkan list gejala 
 public function data_gejala()
 {
 	$data = array(
-		'gejala' => $this->get_data_gejala()
+		'gejala' => $this->M_gejala->get_gejala()
 	);
 	$this->load->view('gejala', $data);
-}
-
-// mengammbil data gejala dari model
-public function get_data_gejala()
-{
-	$request = $this->M_gejala->get_gejala();
-	return $request;
-}
-
-public function get_data_admin()
-{
-	$request = $this->M_gejala->get_admin();
-	return $request;
 }
 
 public function form_gejala()
@@ -42,24 +28,14 @@ public function form_gejala()
 //menambahkan data gejala
 	public function add_gejala()
 	{
-		// $this->data['admin'] = $this->get_data_admin();
-		// $id_admin 	= $this->session->userdata('id_admin');
-		// $id_gejala = $this->input->post('id_gejala');
-		// $nama_gejala = $this->input->post('nama_gejala');
-		// $kd_gejala = $this->input->post('kd_gejala');
-		// $data = array(
-		// 	'id_admin' => $id_admin,
-		// 	'id_gejala' => $id_gejala,
-		// 	'nama_gejala' => $nama_gejala,
-		// 	'kd_gejala' => $kd_gejala,
-		// );
-		$id_admin = $this->session->userdata('id_admin');
-        $admin  = $this->M_gejala->get_admin($id_admin);
+		
+		// $id_admin = $this->session->userdata('id_admin');
+        // $admin  = $this->M_gejala->get_admin($id_admin);
 		$id_gejala = $this->input->post('id_gejala');
 		$nama_gejala = $this->input->post('nama_gejala');
 		$kd_gejala = $this->input->post('kd_gejala');
 		$data = array(
-			'id_admin' => $admin[0]['id_admin'],
+			// 'id_admin' => $admin[0]['id_admin'],
 			'id_gejala' => $id_gejala,
 			'nama_gejala' => $nama_gejala,
 			'kd_gejala' => $kd_gejala,
@@ -108,7 +84,7 @@ public function form_gejala()
 		redirect(base_url('gejala/data_gejala'), 'refresh');
 	}
 
-// menghapus pegawai
+// menghapus gejala
 	public function delete_gejala($id)
 	{
 		// var_dump($id);exit();

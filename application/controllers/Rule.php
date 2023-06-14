@@ -8,43 +8,26 @@ class Rule extends CI_Controller
 		$this->load->model('M_gejala');
 		$this->load->model('M_penyakit');
 		$this->load->model('M_rule');
+		// $this->load->model('M_login');
 	// 	// if($this->session->userdata('status') != "login"){
 	// 	// redirect(base_url("login"));
 	// 	// }
 		}
 	  
-// menamilkan list rule 
+// menampilkan list rule 
 public function data_rule()
 {
 	$data = array(
-		'rule' => $this->get_data_rule()
+		'rule' => $this->M_penyakit->get_rule_penyakit()
 	);
+	// var_dump($data); die();
 	$this->load->view('rule', $data);
-}
-
-public function get_data_rule()
-{
-	$request = $this->M_rule->get_rule();
-	return $request;
-}
-
-// mengammbil data gejala dari model
-public function get_data_gejala()
-{
-	$request = $this->M_gejala->get_gejala();
-	return $request;
-}
-
-public function get_data_penyakit()
-{
-	$request = $this->M_penyakit->get_penyakit();
-	return $request;
 }
 
 public function form_rule()
 {
-	$this->data['gejala'] = $this->get_data_gejala();
-	$this->data['penyakit'] = $this->get_data_penyakit();
+	$this->data['gejala'] = $this->M_gejala->get_gejala();
+	$this->data['penyakit'] = $this->M_penyakit->get_penyakit();
 	$this->load->view('add_rule',$this->data);
 }
 
@@ -52,9 +35,9 @@ public function form_rule()
 	public function add_rule()
 	{
 		$this->data['penyakit'] = $this->M_penyakit->get_penyakit();
-		$this->data['gejala'] = $this->get_data_gejala();
-		$id_admin = $this->session->userdata('id_admin');
-        $admin  = $this->M_gejala->get_admin($id_admin);
+		$this->data['gejala'] = $this->M_gejala->get_gejala();
+		// $id_admin = $this->session->userdata('id_admin');
+        // $admin  = $this->M_gejala->get_admin($id_admin);
 		$id_penyakit = $this->input->post('nama_penyakit');
 		$id_gejala = $this->input->post('kd_gejala');	
 		$gejala = $this->M_rule->get_gejala($id_gejala);
@@ -63,7 +46,7 @@ public function form_rule()
 		$kode_gejala = $this->input->post('kode_gejala');
 		$kode = implode(",",$kode_gejala);
 		$data = array(
-			'id_admin' => $admin[0]['id_admin'],
+			// 'id_admin' => $admin[0]['id_admin'],
 			'id_rule' => $id_rule,
 			'kd_rule' => $kd_rule,
 			'id_penyakit' => $id_penyakit,
@@ -90,41 +73,47 @@ public function form_rule()
 
 	public function edit_rule($id_rule)
 	{
-		$this->data['penyakit'] = $this->M_penyakit->get_penyakit();
-		$this->data['gejala'] = $this->get_data_gejala();
-		$data_detail = $this->M_rule->get_detail($id_rule);
-		$kode_gejala = $data_detail->kode_gejala;
-		$kode = explode(",", $kode_gejala);
-		$penyakit = $this->M_penyakit->get_penyakit();
-		
-		// print_r($data_detail);
-		// exit();
+		$rules = $this->M_penyakit->get_gejala_rule($id_rule);
 		$result = array(
-			'data_detail' => $data_detail,
-			'kode_gejala' => $kode,
-			'id_penyakit' => $penyakit
-		
+			'penyakit' => $this->M_penyakit->get_detail($id_rule),
+			'gejala' => $this->M_gejala->get_gejala(),
+			'rule_penyakit' => $rules,
+			'rule_ids' => array_map(function($rule){
+				return $rule['id_gejala'];
+			}, $rules)
 		);
+		// var_dump($result);exit();
+
 		$this->load->view('edit_rule', $result);
 		// var_dump($data_detail);exit();
 	}
 
-// fungsi proses update gejala yang sudah diedit 	
+	public function detail_rule($id_rule)
+	{
+		$rules = $this->M_penyakit->get_gejala_rule($id_rule);
+		$result = array(
+			'penyakit' => $this->M_penyakit->get_detail($id_rule),
+			'gejala' => $this->get_data_gejala(),
+			'rule_penyakit' => $rules,
+			'rule_ids' => array_map(function($rule){
+				return $rule['id_gejala'];
+			}, $rules)
+		);
+		// var_dump($result);exit();
+		$this->load->view('detail_rule', $result);
+	}
+
+// fungsi proses update rule yang sudah diedit 	
 	public function proses_update()
 	{
-		$id_rule = $this->input->post('id_rule');
+		// $username_admin = $this->session->userdata('nama');
+        // $admin  = $this->M_login->get_admin($username_admin);
+		$id_penyakit = $this->input->post('id_rule');
 		$kode_gejala = $this->input->post('kode_gejala');
-		$kode = implode(",",$kode_gejala);
-		$data_post = array(
-			'id_rule' => $this->input->post('id_rule'),
-			// 'id_gejala' => $this->input->post('id_gejala'),
-			'kd_rule' => $this->input->post('kd_rule'),
-			'id_penyakit' => $this->input->post('nama_penyakit'),
-			'kode_gejala' => $kode
-		);
 
-		$this->load->model('M_rule');
-		$this->M_rule->update_rule($id_rule, $data_post);
+		$this->M_penyakit->delete_rule($id_penyakit);
+		$this->M_penyakit->insert_rule($id_penyakit, $kode_gejala);
+
 		echo "<script type='text/javascript'>alert('Berhasil Ubah Data');</script>";
 		redirect(base_url('rule/data_rule'), 'refresh');
 	}
@@ -136,7 +125,7 @@ public function form_rule()
 		if ($id === null) {
 			echo "Data Gagal dihapus";
 		} else {
-			$request = $this->M_rule->deleterule_model($id);
+			$this->M_penyakit->delete_rule($id);
 			echo "<script type='text/javascript'>alert('Berhasil Hapus Data');</script>";
 		redirect(base_url('rule/data_rule'), 'refresh');
 		}

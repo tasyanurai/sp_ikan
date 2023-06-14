@@ -14,13 +14,20 @@
     <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
   <style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style>
+<style>
+    img.tengah {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+</style>
 </head>
   <body class="h-100">
     
     <div class="container-fluid">
       <div class="row">
         <!-- Main Sidebar -->
-        <?php $this->load->view('user/_partials/sidebar.php')?>
+        <?php $this->load->view('_partials/sidebar.php')?>
         <!-- End Main Sidebar -->
         <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
           <div class="main-navbar sticky-top bg-white">
@@ -29,49 +36,31 @@
           <!-- / .main-navbar -->
           <div class="main-content-container container-fluid px-4">
             <!-- Page Header -->
-            <div class="page-header row no-gutters py-4">
-              <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-                <h3 class="page-title">Hasil Diagnosa</h3>
-              </div>
-            </div>
             <!-- End Page Header -->
             <!-- Default Light Table -->
-            <div class="row">
-              <div class="col">
-                <div class="card card-small mb-4">
-                  <div class="card-header border-bottom">
-				            <div class="xs">
-					            <br>
-				            </div>
-                  
+            
+            <div class="col-12 col-sm-12 text-center text-sm-left mb-0">                             
+                    <div class="content">
+                        <h1 class="text-center"><?= $ucapan ?></h1>
+                        <br>                      
+                    </div>   
+                    <div class="content">
+                        <h3 class="text-center">SELAMAT DATANG DI SISTEM PAKAR DIAGNOSA PENYAKIT IKAN LELE</h3>
+                        <br>                      
+                    </div> 
+                    <!-- <div class="content">
+                        <h5 class="text-center">Website ini berfungsi untuk mendiagnosa ikan lele berdasarkan gejala yang dialami. Tujuan dibuatnya website ini adalah untuk membantu pembudidaya dalam mendiagnosa penyakit ikan lele sehingga pembudidaya tidak perlu berkonsultasi secara langsung dengan seorang ahli atau pakar</h5>
+                        <br>                      
+                    </div>  -->
+                    <div class="content">
+                    <img class="tengah"  style="width:450px;height:300px;" src="<?= base_url('assets/images/lele.png')?>" alt="Shards Dashboard">
+                    <br>                      
+                    </div>
+                    <!-- <h6 class="m-0">Active Users</h6> -->
                   </div>
                   <div class="card-body p-0 pb-3 text-center">
-                    <table class="table table-bordered" border="2">
-                            <tr>
-                                <td style="text-align: left">Tanggal</td>
-                                <td style="text-align: left"><?php echo  date ('d-m-Y', strtotime( $konsultasi['tgl_konsultasi']))?></td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: left">Nama Lengkap</td>
-                                <td style="text-align: left"><?php echo $konsultasi['nama_user'] ?></td>
-                            </tr>                           
-                            <tr>
-                                <td style="text-align: left">Gejala</td>
-                                <td style="text-align: left"><?php echo  $kode_gejala ?></td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: left">Penyakit</td>
-                                <td style="text-align: left"><?php echo  $penyakit->nama_penyakit ?></td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: left">Solusi</td>
-                                <td style="text-align: left"><?php echo  $penyakit->solusi ?></td>
-                            </tr>
-                    </table>
+                    
                   </div>
-                  <div class="text-center">
-                        <a href="<?= base_url('user') ?>" class="btn btn-primary">Selesai</a>
-                    </div><br>
                 </div>
               </div>
             </div>

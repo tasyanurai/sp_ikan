@@ -19,38 +19,45 @@
                   <i class="fas fa-search"></i>
                 </div>
               </div>
-              <input class="navbar-search form-control" type="text" placeholder="Search for something..." aria-label="Search"> </div>
+               </div>
           </form>
           <div class="nav-wrapper">
             <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link <?php if($this->uri->segment(1)=="dashboard"){echo "active";}?> " href="<?php echo base_url(); ?>dashboard">
+                  <i class="material-icons">view_module</i>
+                  <span>Dashboard</span>
+                </a>
+              </li>
               <li class="nav-item">
                 <a class="nav-link <?php if($this->uri->segment(1)=="gejala"){echo "active";}?> " href="<?php echo base_url(); ?>gejala/data_gejala">
-                  <i class="material-icons ">view_module</i>
+                  <i class="material-icons ">table_chart</i>
                   <span>Data Gejala</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link <?php if($this->uri->segment(1)=="penyakit"){echo "active";}?>" href="<?= base_url('penyakit/data_penyakit')?>">
+              <a class="nav-link <?php if($this->uri->segment(1)=="penyakit"){echo "active";}?> " href="<?php echo base_url(); ?>penyakit/data_penyakit">
                   <i class="material-icons">table_chart</i>
                   <span>Data Penyakit</span>
                 </a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link <?php if($this->uri->segment(1)=="rule"){echo "active";}?> " href="<?= base_url('rule/data_rule')?>">
+                  <i class="material-icons">note_add</i>
+                  <span>Basis Pengetahuan</span>
+                </a>
               <li class="nav-item">
                 <a class="nav-link <?php if($this->uri->segment(1)=="diagnosa"){echo "active";}?> " href="<?= base_url('diagnosa/data_diagnosa')?>">
                   <i class="material-icons">vertical_split</i>
                   <span>Diagnosa</span>
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link <?php if($this->uri->segment(1)=="diagnosa"){echo "active";}?> " href="<?= base_url('rule/data_rule')?>">
-                  <i class="material-icons">note_add</i>
-                  <span>Basis Pengetahuan</span>
-                </a>
+              
               </li><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                <li class="nav-item">
-                <a class="nav-link <?php if($this->uri->segment(1)=="diagnosa"){echo "active";}?> " href="<?= base_url('login')?>">
+                <a class="nav-link <?php if($this->uri->segment(1)=="logout"){echo "active";}?> " href="<?= base_url('login')?>">
                   <i class="material-icons">close</i>
-                  <span>LOG OUT</span>
+                  <span>LOGOUT</span>
                 </a>
               </li>
               <!-- <li class="nav-item">

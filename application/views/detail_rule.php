@@ -20,18 +20,18 @@
     <div class="container-fluid">
       <div class="row">
         <!-- Main Sidebar -->
-        <?php $this->load->view('user/_partials/sidebar.php')?>
+        <?php $this->load->view('_partials/sidebar.php')?>
         <!-- End Main Sidebar -->
         <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
           <div class="main-navbar sticky-top bg-white">
             <!-- Main Navbar -->
-            <?php $this->load->view('user/_partials/navbar.php')?>
+            <?php $this->load->view('_partials/navbar.php')?>
           <!-- / .main-navbar -->
           <div class="main-content-container container-fluid px-4">
             <!-- Page Header -->
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-                <h3 class="page-title">HASIL</h3>
+                <h3 class="page-title"> Detail Rule</h3>
               </div>
             </div>
             <!-- End Page Header -->
@@ -40,55 +40,34 @@
               <div class="col">
                 <div class="card card-small mb-4">
                   <div class="card-header border-bottom">
-                            <div class="xs">
-					            <br>
-				            </div>
-                    <!-- <h6 class="m-0">Active Users</h6> -->
-                  </div>
                   <div class="card-body p-0 pb-3 text-center">
-                    <table class="table mb-0">
-                      <thead class="bg-light">
-                        <tr>
-                          <th scope="col" class="border-0">Tanggal</th>
-                          <th scope="col" class="border-0">Nama</th>
-                          <th scope="col" class="border-0">Email</th>
-                          <th scope="col" class="border-0">Gejala</th>
-                          <th scope="col" class="border-0">Penyakit</th>
-                          <th scope="col" class="border-0">Solusi</th>
-                          <th scope="col" class="border-0">Action</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                      <?php 
-                        $no=0;
-                        foreach ($konsultasi as $g):
-                          $no++;
-                          ?>
-
-                          <tr>
-                            <td><?php echo $no; ?></td>
-                            <td style="text-align: center"><?php echo $g['tgl_konsultasi'] ?></td>
-                            <td style="text-align: center"><?php echo $g['nama_user'] ?></td>
-                            <td style="text-align: center"><?php echo $g['email'] ?></td>
-                            <td style="text-align: center"><?php echo $g['kode_gejala'] ?></td>
-                            <td style="text-align: center"><?php echo $g['nama_penyakit'] ?></td>
-                            <td style="text-align: left"><?php echo $g['solusi'] ?></td>
-                            <td>
-                              <a href="<?php echo base_url('penyakit/edit_penyakit/'.$g['id_penyakit']) ?>"  class="btn btn_2 btn-sm btn-primary"><i class="fa fa-edit"></i></a>
-                              <a href="<?php echo base_url('penyakit/delete_penyakit/'.$g['id_penyakit']) ?>" value="Delete" class="btn btn_2 btn-sm btn-danger"><i class="fa fa-trash"></i></a></td>
-                            </td>
-
-
-                          </tr>
-                      <?php endforeach ?>
-                      </tbody>
-                    </table>
+                  <form  method="post" action="<?=base_url('rule/proses_update')?>">
+                  <div class="form-group">
+                        <label class="page-title" style="float:left"><b> Gejala </b></label>
+                          <br/><br/>
+                          <div class="col-md-12" align="left">
+                            <?php foreach ($gejala as $key => $value): ?>
+                              <input type="checkbox" name="kode_gejala[]" id="kode_gejala[]"  alt="Checkbox" <?php if (in_array ($value['id_gejala'], $rule_ids)) echo 'checked="checked"'; ?> value="<?php echo $value['id_gejala'] ?>"><?php echo $value['kd_gejala'] . ' - ' . $value['nama_gejala'] ?>
+                              <br><br>
+                            <?php endforeach ?>  
+                          </div>  
+                      </div>
+                  <!-- <div class="form-group">
+                        <label class="page-title" style="float:left"><b> Gejala </b></label>
+                        <div class="col-md-12">
+                              <input type="text" class="form-control" id="kode_gejala" name="kode_gejala"placeholder="Inputkan Kode Rule" disabled value="<?php echo $data_detail->kode_gejala?>"><br> </div>
+                        </div> -->
+                                
+                    </form>
                   </div>
                 </div>
               </div>
             </div>
             <!-- End Default Light Table -->
           </div>
-        <?php $this->load->view('_partials/footer.php')?>
-  </body>
+        </main>
+      </div>
+    </div>
+    <?php $this->load->view('_partials/footer.php')?>
+</body>
 </html>

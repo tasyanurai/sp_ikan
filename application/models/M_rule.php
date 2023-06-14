@@ -4,7 +4,7 @@
 
     class M_rule extends CI_Model{
         
-// mengambil data pegawai pada tabel user 	
+// mengambil data rule 
 	function get_rule(){
         $this->db->select('*');
 		$this->db->from('rule r');
@@ -22,6 +22,19 @@
         $query = $this->db->insert('rule',$data);
         return $query;
     
+    }
+
+// menambahkan data rule 
+    function create_rule($data_gejala) {
+        $rule = $this->db->insert('rule',$data);
+        foreach($data_gejala as $key => $id_gejala) {
+            $dataToSave[] = array(
+                'id_gejala' => $id_gejala,
+                'id_rule' => $rule->insert_id()
+            );
+        }
+        var_dump($dataToSave); die();
+        return $query;
     }
 
 // get detail di form edit rule

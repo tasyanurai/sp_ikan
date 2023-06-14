@@ -31,7 +31,7 @@
             <!-- Page Header -->
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-                <h3 class="page-title">Form Tambah Rule</h3>
+                <h3 class="page-title">Data Diagnosa</h3>
               </div>
             </div>
             <!-- End Page Header -->
@@ -40,49 +40,50 @@
               <div class="col">
                 <div class="card card-small mb-4">
                   <div class="card-header border-bottom">
-                    <div class="card-body p-0 pb-3 text-center">
-                      <form  method="post" action="<?=base_url('rule/add_rule')?>">
-                        <div class="form-group">
-                          <label class="page-title" style="float:left"><b> Kode Gejala </b></label>
-                            <br/><br/>
-                            <div class="col-md-8" align="left">
-                              <?php foreach ($this->data['gejala'] as $key => $value): ?>
-                              <input  type="checkbox" name="kode_gejala[]" alt="Checkbox" value="<?php echo $value['id_gejala'] ?>"><?php echo ' '. $value['kd_gejala'] . ' - ' . $value['nama_gejala'] ?><br>
-                            
-                              <br>
-                              <?php endforeach ?>   </div> 
-                        </div>
-                        <div class="form-group">
-                         <label class="page-title" style="float:left"><b> Penyakit </b></label>
-                          <br/><br/>
-                            <div class="col-md-8">
-								              <select class="form-control" name="nama_penyakit">
-									              <option value="">--Pilih Penyakit--</option>
-                                  <?php foreach ($this->data['penyakit'] as $key => $value): ?>
-										                <option value="<?php echo $value['id_penyakit'] ?>"><?php echo $value['kd_penyakit'] . ' - ' . $value['nama_penyakit'] ?></option>
-									                <?php endforeach ?>
-								              </select>
-							              </div>    
-                        </div>                  
-                        <div class="form-group">
-							            <div class="col-md-12">
-								            <button type="reset" class="btn btn-danger" style="float:right">Reset</button>
-                          </div>
-								          <div class="col-md-11">
-									          <button type="submit" class="btn btn-primary" style="float:right">Submit</button>
-                          </div>
-								        </div>
-							
-                    </form>
+                    <!-- <div class="buttons">
+				          	  <a href="<?php echo base_url('gejala/form_gejala') ?>" style="float: right" class="btn btn_5 btn-md btn-info"><i class="fa fa-plus fa-fw"></i>Add Gejala</a>
+				            </div>
+				            <div class="xs">
+					            <br>
+				            </div> -->
+                    <!-- <h6 class="m-0">Active Users</h6> -->
+                  </div>
+                  <div class="card-body p-0 pb-3 text-center">
+                    <table class="table mb-0">
+                      <thead class="bg-light">
+                        <tr>
+                          <th scope="col" class="border-0">No.</th>
+                          <th scope="col" class="border-0">Tanggal Diagnosa</th>
+                          <th scope="col" class="border-0">Penyakit</th>
+                          <th scope="col" class="border-0">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <?php 
+                        $no=0;
+                        foreach ($konsultasi as $d):
+                          $no++;
+                          ?>
+
+                          <tr>
+                            <td><?php echo $no; ?></td>
+                            <td style="text-align: center"><?php echo $d['tgl_konsultasi'] ?></td>
+                            <td style="text-align: center"><?php echo $d['nama_penyakit'] ?></td>
+                            <td>
+                              <a href="<?php echo base_url('diagnosa/delete_diagnosa/'.$d['id_konsultasi']) ?>" value="Delete" class="btn btn_2 btn-sm btn-danger"><i class="fa fa-trash"></i></a></td>
+                            </td>
+
+
+                          </tr>
+                      <?php endforeach ?>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
             </div>
             <!-- End Default Light Table -->
           </div>
-        </main>
-      </div>
-    </div>
-    <?php $this->load->view('_partials/footer.php')?>
-</body>
+        <?php $this->load->view('_partials/footer.php')?>
+  </body>
 </html>

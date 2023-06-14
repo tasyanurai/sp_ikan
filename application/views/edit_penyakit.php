@@ -61,7 +61,7 @@
 								<button type="reset" class="btn btn-danger" style="float:right">Reset</button>
 								<div class="col-md-11">
                                 <input type="hidden" name="id_penyakit" id="id_penyakit" value="<?= $data_detail->id_penyakit ?>" />
-									<button type="submit" class="btn btn-primary" style="float:right">Submit</button></div>
+									<button type="submit" class="btn btn-primary" style="float:right">Save</button></div>
 								</div>
 							</div>
                     </form>

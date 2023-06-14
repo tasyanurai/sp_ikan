@@ -63,7 +63,7 @@
                             <br/><br/>
                             <div class="col-md-8" align="left">
                               <?php foreach ($this->data['gejala'] as $key => $value): ?>
-                              <input  type="checkbox" name="kode_gejala[]" alt="Checkbox" value="<?php echo $value['nama_gejala'] ?>"><?php echo ' '. $value['kd_gejala'] . ' - ' . $value['nama_gejala'] ?><br>
+                              <input  type="checkbox" name="kode_gejala[]" alt="Checkbox" value="<?php echo $value['id_gejala'] ?>"><?php echo ' '. $value['kd_gejala'] . ' - ' . $value['nama_gejala'] ?><br>
                             
                               <br>
                               <?php endforeach ?>   </div> 

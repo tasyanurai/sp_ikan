@@ -41,7 +41,7 @@
                 <div class="card card-small mb-4">
                   <div class="card-header border-bottom">
                     <div class="buttons">
-				          	  <a href="<?php echo base_url('rule/form_rule') ?>" style="float: right" class="btn btn_5 btn-md btn-info"><i class="fa fa-plus fa-fw"></i>Add Rule</a>
+				          	  <!-- <a href="<?php echo base_url('rule/form_rule') ?>" style="float: right" class="btn btn_5 btn-md btn-info"><i class="fa fa-plus fa-fw"></i>Add Rule</a> -->
 				            </div>
 				            <div class="xs">
 					            <br>
@@ -54,7 +54,6 @@
                         <tr>
                           <th scope="col" class="border-0">No.</th>
                           <th scope="col" class="border-0">Kode Rule</th>
-                          <th scope="col" class="border-0">Gejala</th>
                           <th scope="col" class="border-0">Penyakit</th>
                           <th scope="col" class="border-0">Action</th>
                         </tr>
@@ -68,12 +67,13 @@
 
                           <tr>
                             <td><?php echo $no; ?></td>
-                            <td style="text-align: center"><?php echo $r['kd_rule'] ?></td>
-                            <td style="text-align: left"><?php echo $r['kode_gejala'] ?></td>
+                            <td style="text-align: center"><?php echo $r['kd_rule_p'] ?></td>
+                            <!-- <td style="text-align: left"><?php echo $r['kd_gejala'] ?></td> -->
                             <td style="text-align: left"><?php echo  $r['nama_penyakit'] ?></td>
                             <td>
-                              <a href="<?php echo base_url('rule/edit_rule/'.$r['id_rule']) ?>"  class="btn btn_2 btn-sm btn-primary"><i class="fa fa-edit"></i></a>
-                              <a href="<?php echo base_url('rule/delete_rule/'.$r['id_rule']) ?>" value="Delete" class="btn btn_2 btn-sm btn-danger"><i class="fa fa-trash"></i></a></td>
+                            <a href="<?php echo base_url('rule/edit_rule/'.$r['id_penyakit']) ?>"  class="btn btn_2 btn-sm btn-success"><i class="fa fa-search"></i></a>
+                              <!-- <a href="<?php echo base_url('rule/edit_rule/'.$r['id_penyakit']) ?>"  class="btn btn_2 btn-sm btn-primary"><i class="fa fa-edit"></i></a> -->
+                              <a href="<?php echo base_url('rule/delete_rule/'.$r['id_penyakit']) ?>" value="Delete" class="btn btn_2 btn-sm btn-danger"><i class="fa fa-trash"></i></a></td>
                             </td>
 
 
@@ -89,4 +89,4 @@
           </div>
         <?php $this->load->view('_partials/footer.php')?>
   </body>
-</html>
+</html>                        

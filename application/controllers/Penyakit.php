@@ -35,40 +35,16 @@ public function form_penyakit()
 //menambahkan data penyakit
 public function add_penyakit()
 {
-// 	$path = FCPATH.'/assets/uploads_gambar/';
-// 	if(!is_dir($path))
-// 		{
-// 			mkdir($path,0777,TRUE);
-// 		}
-//         $config['upload_path']          = $path;
-// 		$config['allowed_types']        = 'gif|jpg|png|jpeg';
-// 		$config['encrypt_name']=TRUE;
-// 		$config['max_size']             = 0;
-// 		$config['max_width']            = 0;
-// 		$config['max_height']           = 0;
- 
-// 		$this->load->library('upload', $config);
-// 		$this->upload->initialize($config);
 
-// 	if ( ! $this->upload->do_upload('gambar_penyakit'))
-// 	{
-// 			$error = array('error' => $this->upload->display_errors());
-// // var_dump($error);exit();
-// 			redirect('penyakit/form_penyakit', $error);
-// 	}
-	// else {
-		// $id_penyakit = $this->session->userdata('id_penyakit');
-            //  $data_upload = array('upload_data' => $this->upload->data());
-            //  $filename = $data_upload['upload_data']['file_name'];
-			$id_admin = $this->session->userdata('id_admin');
-        	$admin  = $this->M_penyakit->get_admin($id_admin);
+			// $id_admin = $this->session->userdata('id_admin');
+        	// $admin  = $this->M_penyakit->get_admin($id_admin);
 			$id_penyakit = $this->input->post('id_penyakit');
 			$nama_penyakit = $this->input->post('nama_penyakit');
 			$kd_penyakit = $this->input->post('kd_penyakit');
 			$solusi = $this->input->post('solusi');
              $data = [
                 // 'gambar_penyakit' => $filename,
-				'id_admin' => $admin[0]['id_admin'],
+				// 'id_admin' => $admin[0]['id_admin'],
 				'id_penyakit' => $id_penyakit,
 				'nama_penyakit' => $nama_penyakit,
 				'kd_penyakit' => $kd_penyakit,
@@ -76,7 +52,7 @@ public function add_penyakit()
             ];
                 $this->M_penyakit->add_data_penyakit($data);
                 redirect('penyakit/data_penyakit');
-	// }
+
     }
 
 	public function edit_penyakit($id_penyakit)
@@ -105,7 +81,7 @@ public function add_penyakit()
 
 		$this->load->model('M_penyakit');
 		$this->M_penyakit->update_penyakit($id_penyakit, $data_post);
-		echo "<script type='text/javascript'>alert('Berhasil Ubah Data');</script>";
+		echo "<script type='text/javascript'>alert('Berhasil Ubah Data Penyakit');</script>";
 		redirect(base_url('penyakit/data_penyakit'), 'refresh');
 	}
 
@@ -117,7 +93,7 @@ public function add_penyakit()
 			echo "Data Gagal dihapus";
 		} else {
 			$request = $this->M_penyakit->deletepenyakit_model($id);
-			echo "<script type='text/javascript'>alert('Berhasil Hapus Data');</script>";
+			echo "<script type='text/javascript'>alert('Berhasil Hapus Data Penyakit');</script>";
 		redirect(base_url('penyakit/data_penyakit'), 'refresh');
 		}
 	}

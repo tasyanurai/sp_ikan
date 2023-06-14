@@ -9,6 +9,10 @@
             return $this->db->get_where($table,$where);
         }
 
+        function get_admin ($username){
+            return $this->db->get_where('admin', ['username' => $username])->row_array();
+        }
+
     //     public function cek_admin($email, $pass_bash)
     // {
     //     $this->db->where('email', $email);

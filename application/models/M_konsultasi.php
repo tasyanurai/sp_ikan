@@ -8,7 +8,7 @@
 	function get_konsultasi(){
         $this->db->select('*');
 		$this->db->from('konsultasi k');
-		$this->db->join('rule r','k.id_rule = r.id_rule');
+		$this->db->join('penyakit p','k.id_penyakit = p.id_penyakit');
 
 		$query = $this->db->get();
 		return $query->result_array();
@@ -25,7 +25,30 @@
 
     function get_rule($id_rule){
         $this->db->select('*');
-        $this->db->from('rule', $id_rule);
+        $this->db->from('rule');
+        $this->db->where_in('id_gejala', $id_rule);
+        $query = $this->db->get();
+        // var_dump($query);exit();
+        return $query->result_array();
+    }
+
+    function get_rule_penyakit($id_penyakit){
+        // SELECT r.*, g.* FROM rule r JOIN gejala g ON r.id_gejala = g.id_gejala;
+		$this->db->select('r.*, g.*');
+		$this->db->from('rule r');
+		$this->db->join('gejala g','r.id_gejala = g.id_gejala');
+		$this->db->where('r.id_penyakit', $id_penyakit);
+		$hasil = $this->db->get();
+		return $hasil->result_array();
+    }
+
+    function get_calculated_rule($id_rule){
+        $this->db->select('SUM(bobot) total_bobot, p.*');
+        $this->db->from('rule r');
+        $this->db->join('penyakit p', 'p.id_penyakit = r.id_penyakit');
+        $this->db->where_in('r.id_gejala', $id_rule);
+        $this->db->group_by("p.id_penyakit");
+        $this->db->order_by("total_bobot DESC");
         $query = $this->db->get();
         // var_dump($query);exit();
         return $query->result_array();
@@ -35,9 +58,9 @@
     function get_detail($id_konsultasi)
 	{
 		$this->db->select('k.*');
-		$this->db->select('r.*');
+		$this->db->select('p.*');
 		$this->db->from('konsultasi k');
-		$this->db->join('rule r','r.id_rule = k.id_rule');
+		$this->db->join('penyakit p','p.id_penyakit = k.id_penyakit');
 		$this->db->where('id_konsultasi', $id_konsultasi);
 		$hasil = $this->db->get();
 		return $hasil->row_array();
@@ -55,40 +78,10 @@
         return $id;
     }
 
-//     function get_gejala($id_gejala){
-//         $this->db->select('*');
-//         $this->db->from('gejala', $id_gejala);
-//         $query = $this->db->get();
-//         // var_dump($query);exit();
-//         return $query->result_array();
-//     }
-
-//     function get_penyakit($id_penyakit){
-//         $this->db->select('*');
-//         $this->db->from('penyakit', $id_penyakit);
-//         $query = $this->db->get();
-//         // var_dump($query);exit();
-//         return $query->result_array();
-//     }
-    
-//     function update_rule($id_rule, $data){
-// 		$this->db->where('id_rule',$id_rule);
-// 		$query = $this->db->update('rule',$data);
-// 		return $query;
-// 	}
-
-//     public function cek_kode($kd_rule){
-//         $this->db->select('*');
-//         $this->db->from('rule');
-//         $this->db->where('kd_rule = ',$kd_rule);
-//         $query = $this->db->get();
-//         return $query;
-//       }
-
-//    // menghapus rule 
-//    function deleterule_model($id){
-//     $this->db->where('id_rule', $id);
-//     $delete = $this->db->delete('rule');
-//     }
+   // menghapus rule 
+   function deletediagnosa_model($id){
+    $this->db->where('id_konsultasi', $id);
+    $delete = $this->db->delete('konsultasi');
+    }
 }
 ?>

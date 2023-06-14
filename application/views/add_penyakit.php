@@ -31,7 +31,7 @@
             <!-- Page Header -->
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-                <h3 class="page-title">Form Edit Penyakit</h3>
+                <h3 class="page-title">Form Tambah Penyakit</h3>
               </div>
             </div>
             <!-- End Page Header -->
@@ -55,7 +55,7 @@
                         <label class="page-title" style="float:left"><b> Solusi </b></label>
                         <br/><br/>
                         <div class="col-md-12">
-                        <textarea class="form-control" id="solusi" name="solusi" placeholder="Inputkan Nama Solusi" required value="" rows="5"></textarea>
+                        <textarea class="form-control" id="solusi" name="solusi" placeholder="Inputkan Solusi" required value="" rows="5"></textarea>
                          </div>
                         </div>                        
                           <div class="form-group">
