@@ -27,12 +27,12 @@
     <div class="container-fluid">
       <div class="row">
         <!-- Main Sidebar -->
-        <?php $this->load->view('user/_partials/sidebar.php')?>
+        <?php $this->load->view('konsultasi/_partials/sidebar.php')?>
         <!-- End Main Sidebar -->
         <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
           <div class="main-navbar sticky-top bg-white">
             <!-- Main Navbar -->
-            <?php $this->load->view('user/_partials/navbar.php')?>
+            <?php $this->load->view('konsultasi/_partials/navbar.php')?>
           <!-- / .main-navbar -->
           <div class="main-content-container container-fluid px-4">
             <!-- Page Header -->
@@ -66,6 +66,6 @@
             </div>
             <!-- End Default Light Table -->
           </div>
-        <?php $this->load->view('user/_partials/footer.php')?>
+        <?php $this->load->view('konsultasi/_partials/footer.php')?>
   </body>
 </html>

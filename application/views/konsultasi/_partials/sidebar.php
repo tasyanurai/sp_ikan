@@ -24,24 +24,24 @@
           <div class="nav-wrapper">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link <?php if($this->uri->segment(1)=="dashboard"){echo "active";}?> " href="<?php echo base_url(); ?>user">
+                <a class="nav-link <?php if($this->uri->segment(1)=="dashboard"){echo "active";}?> " href="<?php echo base_url(); ?>konsultasi">
                   <i class="material-icons ">view_module</i>
                   <span>Dashboard</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link <?php if($this->uri->segment(1)=="konsultasi"){echo "active";}?>" href="<?= base_url('user/konsultasi')?>">
+                <a class="nav-link <?php if($this->uri->segment(1)=="konsultasi"){echo "active";}?>" href="<?= base_url('konsultasi/konsultasi')?>">
                   <i class="material-icons">table_chart</i>
                   <span>Konsultasi</span>
                 </a>
               </li>
                <li class="nav-item">
-                <a class="nav-link <?php if($this->uri->segment(1)=="struktur_ikan"){echo "active";}?> " href="<?= base_url('user/struktur_ikan')?>">
+                <a class="nav-link <?php if($this->uri->segment(1)=="struktur_ikan"){echo "active";}?> " href="<?= base_url('konsultasi/struktur_ikan')?>">
                   <i class="material-icons">note_add</i>
                   <span>Struktur Ikan </span>
                 </a>
               </li>
-              <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+              <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                <li class="nav-item">
                 <a class="nav-link <?php if($this->uri->segment(1)=="diagnosa"){echo "active";}?> " href="<?= base_url('login')?>">
                   <i class="material-icons">login</i>

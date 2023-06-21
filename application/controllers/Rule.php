@@ -32,44 +32,44 @@ public function form_rule()
 }
 
 //menambahkan data rule
-	public function add_rule()
-	{
-		$this->data['penyakit'] = $this->M_penyakit->get_penyakit();
-		$this->data['gejala'] = $this->M_gejala->get_gejala();
-		// $id_admin = $this->session->userdata('id_admin');
-        // $admin  = $this->M_gejala->get_admin($id_admin);
-		$id_penyakit = $this->input->post('nama_penyakit');
-		$id_gejala = $this->input->post('kd_gejala');	
-		$gejala = $this->M_rule->get_gejala($id_gejala);
-		$id_rule = $this->input->post('id_rule');
-		$kd_rule = $this->input->post('kd_rule');
-		$kode_gejala = $this->input->post('kode_gejala');
-		$kode = implode(",",$kode_gejala);
-		$data = array(
-			// 'id_admin' => $admin[0]['id_admin'],
-			'id_rule' => $id_rule,
-			'kd_rule' => $kd_rule,
-			'id_penyakit' => $id_penyakit,
-			'id_gejala' => $gejala[0]['id_gejala'],
-			// 'kode_gejala' =>implode(",", $kode_gejala)
-			'kode_gejala' => $kode
+	// public function add_rule()
+	// {
+	// 	$this->data['penyakit'] = $this->M_penyakit->get_penyakit();
+	// 	$this->data['gejala'] = $this->M_gejala->get_gejala();
+	// 	// $id_admin = $this->session->userdata('id_admin');
+    //     // $admin  = $this->M_gejala->get_admin($id_admin);
+	// 	$id_penyakit = $this->input->post('nama_penyakit');
+	// 	$id_gejala = $this->input->post('kd_gejala');	
+	// 	$gejala = $this->M_rule->get_gejala($id_gejala);
+	// 	$id_rule = $this->input->post('id_rule');
+	// 	$kd_rule = $this->input->post('kd_rule');
+	// 	$kode_gejala = $this->input->post('kode_gejala');
+	// 	$kode = implode(",",$kode_gejala);
+	// 	$data = array(
+	// 		// 'id_admin' => $admin[0]['id_admin'],
+	// 		'id_rule' => $id_rule,
+	// 		'kd_rule' => $kd_rule,
+	// 		'id_penyakit' => $id_penyakit,
+	// 		'id_gejala' => $gejala[0]['id_gejala'],
+	// 		// 'kode_gejala' =>implode(",", $kode_gejala)
+	// 		'kode_gejala' => $kode
 
-		);
-		// var_dump($data);die();
+	// 	);
+	// 	// var_dump($data);die();
 
-		if ($data['kd_rule'] == null) {
-			$this->load->view('add_rule',$this->data);
-		} else {
+	// 	if ($data['kd_rule'] == null) {
+	// 		$this->load->view('add_rule',$this->data);
+	// 	} else {
 			
-			$request = $this->M_rule->add_data_rule($data);
-			// var_dump($request);exit();
-			if ($request) {
-				redirect('rule/data_rule');
-			} else {
-				echo "Insert Gagal";
-			}
-		}
-	}
+	// 		$request = $this->M_rule->add_data_rule($data);
+	// 		// var_dump($request);exit();
+	// 		if ($request) {
+	// 			redirect('rule/data_rule');
+	// 		} else {
+	// 			echo "Insert Gagal";
+	// 		}
+	// 	}
+	// }
 
 	public function edit_rule($id_rule)
 	{

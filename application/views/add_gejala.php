@@ -43,7 +43,7 @@
                   <div class="card-body p-0 pb-3 text-center">
                   <form action="<?=base_url('gejala/add_gejala')?>" method="post">
                     <div class="form-group">
-                        <label class="page-title" style="float:left"><b> KOde Gejala </b></label>
+                        <label class="page-title" style="float:left"><b> Kode Gejala </b></label>
                         <div class="col-md-12">
                               <input type="text" class="form-control" id="kd_gejala" name="kd_gejala"placeholder="Inputkan Kode Gejala" value=""> </div>
                         </div>

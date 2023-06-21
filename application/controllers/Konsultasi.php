@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User extends CI_Controller {
+class Konsultasi extends CI_Controller {
     function __construct(){
 		parent::__construct();
 		$this->load->model('M_gejala');
@@ -48,18 +48,18 @@ class User extends CI_Controller {
 		$data = [
 			'ucapan' => $ucapan
 		];
-		$this->load->view('user/dashboard', $data);
+		$this->load->view('konsultasi/dashboard', $data);
 	}
 
     public function struktur_ikan()
 	{
-        $this->load->view('user/struktur_ikan');
+        $this->load->view('konsultasi/struktur_ikan');
     }
 
 public function konsultasi()
 {
 	$this->data['gejala'] = $this->M_gejala->get_gejala();
-	$this->load->view('user/konsultasi',$this->data);
+	$this->load->view('konsultasi/konsultasi',$this->data);
 }
 
 public function hasil($id_konsultasi)
@@ -74,7 +74,7 @@ public function hasil($id_konsultasi)
 		}, $rules));
         $data['penyakit'] = $this->M_penyakit->get_detail($konsultasi['id_penyakit']);
 		// var_dump($data); die();
-    	$this->load->view('user/hasil',$data);
+    	$this->load->view('konsultasi/hasil',$data);
 
 }
 
@@ -99,13 +99,13 @@ public function hasil($id_konsultasi)
 		// var_dump($data);die();
 
 		if ($data['nama_user'] == null) {
-			$this->load->view('user/konsultasi',$this->data);
+			$this->load->view('konsultasi/konsultasi',$this->data);
 		} else {
 			
 			$request = $this->M_konsultasi->add_data_konsultasi($data);
 			// var_dump($request);exit();
 			if ($request) {
-				redirect('user/hasil/'.$this->db->insert_id());
+				redirect('konsultasi/hasil/'.$this->db->insert_id());
 			} else {
 				echo "Insert Gagal";
 			}

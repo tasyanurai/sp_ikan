@@ -53,7 +53,7 @@
                 </a>
               </li>
               
-              </li><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+              </li><br><br><br><br><br><br><br><br><br><br><br>
                <li class="nav-item">
                 <a class="nav-link <?php if($this->uri->segment(1)=="logout"){echo "active";}?> " href="<?= base_url('login')?>">
                   <i class="material-icons">close</i>

@@ -20,12 +20,12 @@
     <div class="container-fluid">
       <div class="row">
         <!-- Main Sidebar -->
-        <?php $this->load->view('user/_partials/sidebar.php')?>
+        <?php $this->load->view('konsultasi/_partials/sidebar.php')?>
         <!-- End Main Sidebar -->
         <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
           <div class="main-navbar sticky-top bg-white">
             <!-- Main Navbar -->
-            <?php $this->load->view('user/_partials/navbar.php')?>
+            <?php $this->load->view('konsultasi/_partials/navbar.php')?>
           <!-- / .main-navbar -->
           <div class="main-content-container container-fluid px-4">
             <!-- Page Header -->
@@ -41,7 +41,7 @@
                 <div class="card card-small mb-4">
                   <div class="card-header border-bottom">
                     <div class="card-body p-0 pb-3 text-center">
-                      <form  method="post" action="<?=base_url('user/add_konsultasi')?>">
+                      <form  method="post" action="<?=base_url('konsultasi/add_konsultasi')?>">
                         <div class="form-group">
                           <label class="page-title" style="float:left"><b> Nama Lengkap </b></label>
                             <div class="col-md-12">
@@ -85,6 +85,6 @@
         </main>
       </div>
     </div>
-    <?php $this->load->view('user/_partials/footer.php')?>
+    <?php $this->load->view('konsultasi/_partials/footer.php')?>
 </body>
 </html>
